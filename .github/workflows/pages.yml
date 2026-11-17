@@ -3,14 +3,6 @@ name: Publicar NURAGHE en GitHub Pages
 on:
   push:
     branches: [main]
-    paths:
-      - 'index.html'
-      - 'assets/**'
-      - 'robots.txt'
-      - 'sitemap.xml'
-      - 'google*.html'
-      - '.github/workflows/pages.yml'
-      - '.nojekyll'
   workflow_dispatch:
 
 permissions:
