@@ -50,13 +50,14 @@ h2{font-size:clamp(2.4rem,4.2vw,4.2rem);line-height:1.13}
 .hero .statement{font:normal clamp(1.75rem,3vw,2.65rem)/1.13 Georgia,serif;color:var(--gold);margin:28px 0 20px}
 .hero .summary{font-size:.95rem;color:#d6e8e4;max-width:440px;line-height:1.9}
 .hero .credit{font-size:.78rem;letter-spacing:.05em;margin-top:30px}.hero .footnote{font-size:.66rem;letter-spacing:.08em;margin:55px 0 0}
-/* Libro tridimensional en portada: conserva la cubierta original y añade lomo y profundidad. */
-.hero-book-stage{width:100%;display:flex;justify-content:center;align-items:center;perspective:1100px;padding:25px 22px 48px 54px;min-width:0}
-.hero-book{--book-depth:48px;position:relative;width:min(100%,350px);transform-style:preserve-3d;transform:rotateY(20deg) rotateZ(1deg);filter:drop-shadow(-14px 28px 24px rgba(0,12,13,.65))}
-.hero-book .hero-cover{display:block;width:100%;height:auto;max-width:none;position:relative;z-index:1;border-radius:1px 3px 3px 1px;box-shadow:inset 4px 0 6px rgba(0,0,0,.3),9px 10px 22px rgba(0,0,0,.25);backface-visibility:hidden}
-.hero-book-spine{position:absolute;top:0;bottom:0;left:calc(-1 * var(--book-depth));width:var(--book-depth);transform-origin:right center;transform:rotateY(-90deg);background:linear-gradient(90deg,#031a1c 0%,#124846 18%,#0b3938 60%,#03191b 100%);border:1px solid #c8b99133;display:flex;align-items:center;justify-content:center;box-shadow:inset 6px 0 10px #0007;color:#e9e0c8;font:normal 1rem Georgia,serif;letter-spacing:.16em;writing-mode:vertical-rl;text-orientation:mixed}
-.hero-book::after{content:"";position:absolute;z-index:2;top:0;left:0;width:6px;height:100%;background:linear-gradient(90deg,#00151655,transparent);pointer-events:none}
-@media(max-width:680px){.hero-book-stage{padding:10px 15px 35px 34px}.hero-book{width:min(70vw,290px);--book-depth:38px;transform:rotateY(18deg) rotateZ(1deg)}}
+/* Libro con lomo visible: perspectiva editorial sin ocultar el canto. */
+.hero-book-stage{width:100%;display:flex;justify-content:center;align-items:center;padding:24px 12px 46px 28px;min-width:0}
+.hero-book{position:relative;display:flex;align-items:stretch;width:min(100%,410px);transform:rotate(-2deg);filter:drop-shadow(-16px 28px 22px rgba(0,10,12,.72))}
+.hero-book-spine{position:relative;flex:0 0 64px;width:64px;min-width:64px;align-self:stretch;display:flex;justify-content:center;align-items:center;writing-mode:vertical-rl;text-orientation:mixed;color:#e7d8b3;font:normal 1.25rem Georgia,serif;letter-spacing:.18em;background:linear-gradient(90deg,#021819 0%,#0b3231 13%,#14514c 38%,#0a3232 70%,#031b1e 100%);border-left:2px solid #254f48;border-right:3px solid #021b1d;box-shadow:inset 8px 0 12px #0008,inset -4px 0 7px #0008;transform:skewY(-5deg);transform-origin:right center;text-shadow:0 1px 2px #000}
+.hero-book-spine::before{content:"FERNANDO SANTOS BENEIT";position:absolute;bottom:15px;font:normal .47rem Arial,sans-serif;letter-spacing:.1em;color:#c6b995;writing-mode:vertical-rl}
+.hero-book .hero-cover{display:block;flex:1 1 auto;width:calc(100% - 64px);min-width:0;height:auto;max-width:none;object-fit:fill;border-radius:0 3px 3px 0;box-shadow:6px 6px 17px #00111277;transform:skewY(1deg);transform-origin:left center}
+.hero-book::after{content:"";position:absolute;z-index:2;top:0;bottom:0;left:64px;width:7px;background:linear-gradient(90deg,#001416bb,#a5c2ac1c,transparent);pointer-events:none}
+@media(max-width:680px){.hero-book-stage{padding:14px 8px 35px 18px}.hero-book{width:min(84vw,340px)}.hero-book-spine{flex-basis:48px;width:48px;min-width:48px;font-size:1rem}.hero-book .hero-cover{width:calc(100% - 48px)}.hero-book::after{left:48px}}
 .prologue{background:#052326}.prologue-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:90px}
 .prologue h2{margin:24px 0 28px}.prologue .intro{line-height:1.8}
 .excerpt{font:normal clamp(1.1rem,1.6vw,1.45rem)/1.7 Georgia,serif}
