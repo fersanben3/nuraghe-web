@@ -50,14 +50,12 @@ h2{font-size:clamp(2.4rem,4.2vw,4.2rem);line-height:1.13}
 .hero .statement{font:normal clamp(1.75rem,3vw,2.65rem)/1.13 Georgia,serif;color:var(--gold);margin:28px 0 20px}
 .hero .summary{font-size:.95rem;color:#d6e8e4;max-width:440px;line-height:1.9}
 .hero .credit{font-size:.78rem;letter-spacing:.05em;margin-top:30px}.hero .footnote{font-size:.66rem;letter-spacing:.08em;margin:55px 0 0}
-/* Libro con lomo visible: perspectiva editorial sin ocultar el canto. */
-.hero-book-stage{width:100%;display:flex;justify-content:center;align-items:center;padding:24px 12px 46px 28px;min-width:0}
-.hero-book{position:relative;display:flex;align-items:stretch;width:min(100%,410px);transform:rotate(-2deg);filter:drop-shadow(-16px 28px 22px rgba(0,10,12,.72))}
-.hero-book-spine{position:relative;flex:0 0 64px;width:64px;min-width:64px;align-self:stretch;display:flex;justify-content:center;align-items:center;writing-mode:vertical-rl;text-orientation:mixed;color:#e7d8b3;font:normal 1.25rem Georgia,serif;letter-spacing:.18em;background:linear-gradient(90deg,#021819 0%,#0b3231 13%,#14514c 38%,#0a3232 70%,#031b1e 100%);border-left:2px solid #254f48;border-right:3px solid #021b1d;box-shadow:inset 8px 0 12px #0008,inset -4px 0 7px #0008;transform:skewY(-5deg);transform-origin:right center;text-shadow:0 1px 2px #000}
-.hero-book-spine::before{content:"FERNANDO SANTOS BENEIT";position:absolute;bottom:15px;font:normal .47rem Arial,sans-serif;letter-spacing:.1em;color:#c6b995;writing-mode:vertical-rl}
-.hero-book .hero-cover{display:block;flex:1 1 auto;width:calc(100% - 64px);min-width:0;height:auto;max-width:none;object-fit:fill;border-radius:0 3px 3px 0;box-shadow:6px 6px 17px #00111277;transform:skewY(1deg);transform-origin:left center}
-.hero-book::after{content:"";position:absolute;z-index:2;top:0;bottom:0;left:64px;width:7px;background:linear-gradient(90deg,#001416bb,#a5c2ac1c,transparent);pointer-events:none}
-@media(max-width:680px){.hero-book-stage{padding:14px 8px 35px 18px}.hero-book{width:min(84vw,340px)}.hero-book-spine{flex-basis:48px;width:48px;min-width:48px;font-size:1rem}.hero-book .hero-cover{width:calc(100% - 48px)}.hero-book::after{left:48px}}
+/* Fotografía tridimensional definitiva aprobada por el autor.
+   Se muestra únicamente la mitad derecha de la imagen para conservar
+   el lomo real y evitar duplicar el texto y el botón ilustrados a la izquierda. */
+.hero-book-stage{width:100%;display:flex;justify-content:center;align-items:center;padding:14px 0;min-width:0}
+.hero-book-photo{display:block;width:min(100%,490px);aspect-ratio:0.73;object-fit:cover;object-position:right center;max-width:100%;height:auto;filter:drop-shadow(-12px 20px 22px rgba(0,10,12,.38))}
+@media(max-width:680px){.hero-book-stage{padding:8px 0 20px}.hero-book-photo{width:min(100%,420px)}}
 .prologue{background:#052326}.prologue-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:90px}
 .prologue h2{margin:24px 0 28px}.prologue .intro{line-height:1.8}
 .excerpt{font:normal clamp(1.1rem,1.6vw,1.45rem)/1.7 Georgia,serif}
@@ -149,7 +147,7 @@ h2{font-size:clamp(2.4rem,4.2vw,4.2rem);line-height:1.13}
 <p class="summary">Dos humanos intentan reconstruir la humanidad. Un robot conserva la memoria de la civilización y descubre qué significa ser humano.</p>
 <div class="actions"><a class="btn btn-gold" href="https://www.amazon.es/s?k=9798259006522" target="_blank" rel="noopener noreferrer">Descubrir en Amazon</a><a class="btn btn-plain" href="#trailer">Ver el tráiler ↓</a></div>
 <p class="credit">Fernando Santos Beneit</p><p class="footnote">Una segunda oportunidad empieza con una pregunta.</p></div>
-<div class="hero-book-stage"><div class="hero-book"><div class="hero-book-spine" aria-hidden="true">NURAGHE</div><img class="hero-cover" src="portada-nuraghe.webp" alt="Libro NURAGHE, el origen de una nueva humanidad, presentado en perspectiva tridimensional" fetchpriority="high"></div></div>
+<div class="hero-book-stage"><img class="hero-book-photo" src="nuraghe-portada-3d-aprobada.webp" alt="Edición tridimensional de NURAGHE, el origen de una nueva humanidad, con el lomo del libro visible" width="1536" height="1024" fetchpriority="high"></div>
 </div></section>
 <section class="section prologue" id="prologo"><div class="container prologue-grid">
 <div><span class="eyebrow">Prólogo · Primeras líneas</span><h2>Había visto<br>un pozo.</h2><p class="intro">Un lugar real en Cerdeña.<br>El comienzo de una historia imposible.</p></div>
