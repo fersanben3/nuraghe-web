@@ -8,6 +8,8 @@ on:
       - 'assets/**'
       - 'robots.txt'
       - 'sitemap.xml'
+      - 'google*.html'
+      - '.github/workflows/pages.yml'
       - '.nojekyll'
   workflow_dispatch:
 
