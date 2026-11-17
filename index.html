@@ -50,7 +50,13 @@ h2{font-size:clamp(2.4rem,4.2vw,4.2rem);line-height:1.13}
 .hero .statement{font:normal clamp(1.75rem,3vw,2.65rem)/1.13 Georgia,serif;color:var(--gold);margin:28px 0 20px}
 .hero .summary{font-size:.95rem;color:#d6e8e4;max-width:440px;line-height:1.9}
 .hero .credit{font-size:.78rem;letter-spacing:.05em;margin-top:30px}.hero .footnote{font-size:.66rem;letter-spacing:.08em;margin:55px 0 0}
-.hero-cover{width:min(100%,370px);justify-self:center;transform:rotate(2deg);filter:drop-shadow(0 26px 35px #001c1c8a)}
+/* Libro tridimensional en portada: conserva la cubierta original y añade lomo y profundidad. */
+.hero-book-stage{width:100%;display:flex;justify-content:center;align-items:center;perspective:1100px;padding:25px 22px 48px 54px;min-width:0}
+.hero-book{--book-depth:48px;position:relative;width:min(100%,350px);transform-style:preserve-3d;transform:rotateY(20deg) rotateZ(1deg);filter:drop-shadow(-14px 28px 24px rgba(0,12,13,.65))}
+.hero-book .hero-cover{display:block;width:100%;height:auto;max-width:none;position:relative;z-index:1;border-radius:1px 3px 3px 1px;box-shadow:inset 4px 0 6px rgba(0,0,0,.3),9px 10px 22px rgba(0,0,0,.25);backface-visibility:hidden}
+.hero-book-spine{position:absolute;top:0;bottom:0;left:calc(-1 * var(--book-depth));width:var(--book-depth);transform-origin:right center;transform:rotateY(-90deg);background:linear-gradient(90deg,#031a1c 0%,#124846 18%,#0b3938 60%,#03191b 100%);border:1px solid #c8b99133;display:flex;align-items:center;justify-content:center;box-shadow:inset 6px 0 10px #0007;color:#e9e0c8;font:normal 1rem Georgia,serif;letter-spacing:.16em;writing-mode:vertical-rl;text-orientation:mixed}
+.hero-book::after{content:"";position:absolute;z-index:2;top:0;left:0;width:6px;height:100%;background:linear-gradient(90deg,#00151655,transparent);pointer-events:none}
+@media(max-width:680px){.hero-book-stage{padding:10px 15px 35px 34px}.hero-book{width:min(70vw,290px);--book-depth:38px;transform:rotateY(18deg) rotateZ(1deg)}}
 .prologue{background:#052326}.prologue-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:90px}
 .prologue h2{margin:24px 0 28px}.prologue .intro{line-height:1.8}
 .excerpt{font:normal clamp(1.1rem,1.6vw,1.45rem)/1.7 Georgia,serif}
@@ -142,7 +148,7 @@ h2{font-size:clamp(2.4rem,4.2vw,4.2rem);line-height:1.13}
 <p class="summary">Dos humanos intentan reconstruir la humanidad. Un robot conserva la memoria de la civilización y descubre qué significa ser humano.</p>
 <div class="actions"><a class="btn btn-gold" href="https://www.amazon.es/s?k=9798259006522" target="_blank" rel="noopener noreferrer">Descubrir en Amazon</a><a class="btn btn-plain" href="#trailer">Ver el tráiler ↓</a></div>
 <p class="credit">Fernando Santos Beneit</p><p class="footnote">Una segunda oportunidad empieza con una pregunta.</p></div>
-<img class="hero-cover" src="portada-nuraghe.webp" alt="Cubierta de NURAGHE, el origen de una nueva humanidad" fetchpriority="high">
+<div class="hero-book-stage"><div class="hero-book"><div class="hero-book-spine" aria-hidden="true">NURAGHE</div><img class="hero-cover" src="portada-nuraghe.webp" alt="Libro NURAGHE, el origen de una nueva humanidad, presentado en perspectiva tridimensional" fetchpriority="high"></div></div>
 </div></section>
 <section class="section prologue" id="prologo"><div class="container prologue-grid">
 <div><span class="eyebrow">Prólogo · Primeras líneas</span><h2>Había visto<br>un pozo.</h2><p class="intro">Un lugar real en Cerdeña.<br>El comienzo de una historia imposible.</p></div>
