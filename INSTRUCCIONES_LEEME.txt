@@ -1,0 +1,30 @@
+NURAGHE — WEB PREPARADA PARA PUBLICACIÓN
+Fernando Santos Beneit · 13 de noviembre de 2026
+
+QUÉ INCLUYE
+- index.html: web estática responsive (sin bases de datos ni dependencias externas)
+- assets/: portada, imágenes, fotografías y vídeos, incluido el especial del Día Internacional del Libro
+- robots.txt: permite la indexación por buscadores
+- 404.html: página para direcciones inexistentes
+- netlify.toml: configuración opcional para Netlify
+
+ESTADO REAL
+Este ZIP está preparado para publicarse, pero NO se ha subido a ningún alojamiento.
+La web original tamepaste.chatgpt.site NO se ha modificado ni eliminado.
+La reconstrucción se ha realizado a partir de los materiales disponibles en la conversación; NO es una copia exacta del HTML original, que no estaba accesible.
+
+PUBLICACIÓN
+1. Crear una cuenta propia en Netlify, Cloudflare Pages u otro alojamiento estático.
+2. Subir el contenido del ZIP (index.html, assets y demás archivos) como sitio estático.
+3. Obtener una URL pública HTTPS y probar portada, vídeos, galería y navegación en el iPhone.
+4. Opcional: comprar un dominio propio y conectarlo al alojamiento.
+5. En Google Search Console, verificar el dominio o la URL y solicitar indexación.
+6. Cuando conozcamos la URL definitiva, añadirla como canonical y og:url, y crear sitemap.xml con esa URL.
+
+NOTAS
+- La indexación por Google no es inmediata ni está garantizada.
+- No se incluye correo personal ni formulario de contacto sin autorización expresa.
+- No se han inventado enlaces de entrevistas o referencias científicas; las búsquedas en Google Scholar y PubMed son enlaces a búsquedas, no listas verificadas de publicaciones.
+- Los vídeos de naturaleza y el tráiler principal están recomprimidos para optimizar el peso.
+- Los derechos de la obra y de las imágenes corresponden a sus titulares.
+- Se puede mantener la web original y la nueva simultáneamente.
