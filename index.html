@@ -115,7 +115,16 @@ h2{font-size:clamp(2.4rem,4.2vw,4.2rem);line-height:1.13}
 @media(max-width:420px){.photo-grid figure img,.photo-grid figure:nth-child(n+3) img{height:175px}.nature-grid{grid-template-columns:1fr 1fr}.nature-grid figure:last-child{grid-column:1/-1;max-width:60%;justify-self:center}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
 
-.photo-grid figure:first-child img{width:100%;height:auto;aspect-ratio:4/3;object-fit:contain}
+/* Galería Cerdeña: cuatro fotografías completas en una cuadrícula simétrica 2 × 2. */
+.photo-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(12px,2.5vw,30px);align-items:start}
+.photo-grid figure{min-width:0;display:flex;flex-direction:column}
+.photo-grid .photo-open{display:block;width:100%;aspect-ratio:1/1;overflow:hidden;background:#123638}
+.photo-grid .photo-open img,
+.photo-grid figure:nth-child(n+3) .photo-open img,
+.photo-grid figure:first-child .photo-open img{display:block;width:100%;height:100%;aspect-ratio:auto;object-fit:contain;object-position:center}
+.photo-grid figcaption{margin-top:12px;line-height:1.5}
+@media(max-width:680px){.photo-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.photo-grid figcaption{font-size:.65rem}}
+
 </style>
 </head>
 
