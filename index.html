@@ -54,7 +54,7 @@ h2{font-size:clamp(2.4rem,4.2vw,4.2rem);line-height:1.13}
    Se muestra únicamente la mitad derecha de la imagen para conservar
    el lomo real y evitar duplicar el texto y el botón ilustrados a la izquierda. */
 .hero-book-stage{width:100%;display:flex;justify-content:center;align-items:center;padding:14px 0;min-width:0}
-.hero-book-photo{display:block;width:min(100%,490px);aspect-ratio:0.73;object-fit:cover;object-position:right center;max-width:100%;height:auto;filter:drop-shadow(-12px 20px 22px rgba(0,10,12,.38))}
+.hero-book-photo{display:block;width:min(100%,440px);aspect-ratio:auto;object-fit:contain;object-position:center;max-width:100%;height:auto;filter:drop-shadow(-12px 20px 22px rgba(0,10,12,.38))}
 @media(max-width:680px){.hero-book-stage{padding:8px 0 20px}.hero-book-photo{width:min(100%,420px)}}
 .prologue{background:#052326}.prologue-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:90px}
 .prologue h2{margin:24px 0 28px}.prologue .intro{line-height:1.8}
@@ -96,13 +96,11 @@ h2{font-size:clamp(2.4rem,4.2vw,4.2rem);line-height:1.13}
 .science-book{margin-top:37px;padding:34px 0;border-top:1px solid #092e3040;border-bottom:1px solid #092e3040}
 .science-book h3{font:italic 1.65rem Georgia,serif;margin:0 0 18px}
 .science-book p{font-size:.73rem;margin-bottom:10px}
-.buy{background:#103839}.buy-grid{display:grid;grid-template-columns:1fr 1fr;gap:45px;align-items:start}
-.buy h2{margin:16px 0 25px}.buy p{font-size:.9rem;color:#d1e3df}
-.buy-options{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px}
-.buy-option{border:1px solid #e0c59075;padding:22px}.buy-option h3{font-size:1.5rem;margin:0 0 10px}
+.buy{background:#103839}.buy-grid{display:block;max-width:1000px;margin:0 auto;text-align:center}.buy-grid>div{max-width:920px;margin:0 auto}
+.buy h2{margin:16px auto 25px;max-width:820px}.buy p{font-size:.9rem;color:#d1e3df;max-width:760px;margin-left:auto;margin-right:auto}
+.buy-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;max-width:780px;margin:28px auto 0}
+.buy-option{border:1px solid #e0c59075;padding:28px;text-align:center}.buy-option h3{font-size:1.5rem;margin:0 0 10px}
 .buy-option p{font-size:.81rem;min-height:55px}
-.bookstore-video{width:min(100%,280px);max-height:460px;aspect-ratio:9/16;object-fit:contain;background:#082729;margin:auto}
-.bookstore-note{font-size:.78rem;color:#c8ded9;text-align:center;margin-top:12px}
 .final{padding:105px 0 70px;background:linear-gradient(#103839,#082b2d);text-align:center}
 .final h2{font-size:clamp(2.8rem,6vw,5rem);max-width:930px;margin:25px auto 24px}
 .final p{font-size:.95rem;color:#c9ddda}.final .btn{margin-top:18px}
@@ -147,7 +145,7 @@ h2{font-size:clamp(2.4rem,4.2vw,4.2rem);line-height:1.13}
 <p class="summary">Dos humanos intentan reconstruir la humanidad. Un robot conserva la memoria de la civilización y descubre qué significa ser humano.</p>
 <div class="actions"><a class="btn btn-gold" href="https://www.amazon.es/NURAGHE-origen-una-nueva-humanidad/dp/B0GYV6PH4R/ref=sr_1_1?dib=eyJ2IjoiMSJ9.Y0zuDUzZ6TWL5cikYZoEGA.VBKnEKOl9cZMmqviHAKHJTszzIVqNCQFh3CUDy6zLe4&amp;dib_tag=se&amp;keywords=9798259006522&amp;qid=1794955618&amp;sr=8-1&amp;th=1" target="_blank" rel="noopener noreferrer">Descubrir en Amazon</a><a class="btn btn-plain" href="#trailer">Ver el tráiler ↓</a></div>
 <p class="credit">Fernando Santos Beneit</p><p class="footnote">Una segunda oportunidad empieza con una pregunta.</p></div>
-<div class="hero-book-stage"><img class="hero-book-photo" src="nuraghe-portada-3d-aprobada.webp" alt="Edición tridimensional de NURAGHE, el origen de una nueva humanidad, con el lomo del libro visible" width="1536" height="1024" fetchpriority="high"></div>
+<div class="hero-book-stage"><img class="hero-book-photo" src="NURAGHE_portada_nueva_web.webp" alt="Nueva portada de NURAGHE: El origen de una nueva humanidad, de Fernando Santos Beneit" width="946" height="1452" fetchpriority="high" onerror="this.onerror=null;this.src='nuraghe-portada-3d-aprobada.webp'"></div>
 </div></section>
 <section class="section prologue" id="prologo"><div class="container prologue-grid">
 <div><span class="eyebrow">Prólogo · Primeras líneas</span><h2>Había visto<br>un pozo.</h2><p class="intro">Un lugar real en Cerdeña.<br>El comienzo de una historia imposible.</p></div>
@@ -160,9 +158,6 @@ h2{font-size:clamp(2.4rem,4.2vw,4.2rem);line-height:1.13}
 <section class="section trailer-section" id="trailer"><div class="container trailer-layout">
 <div><video class="video-frame" controls playsinline preload="metadata" poster="trailer-poster.jpg" aria-label="Tráiler principal de NURAGHE con audio"><source src="trailer-definitivo.mp4" type="video/mp4">Tu navegador no admite vídeo HTML5.</video><p class="video-caption">Tráiler principal definitivo · Reproducción al pulsar, con sonido.</p></div>
 <div class="trailer-text"><span class="eyebrow">El universo de NURAGHE</span><h2>Una historia para sentir el futuro.</h2><p>Descubre el tráiler principal de la novela. Pulsa reproducir para verlo y escucharlo.</p></div>
-</div><div class="container promo-grid" id="promocionales">
-<article><video class="video-frame" controls playsinline preload="none" poster="dia-del-libro-poster-nuevo.jpg" aria-label="Vídeo promocional del Día Internacional del Libro"><source src="dia-internacional-del-libro.mp4" type="video/mp4"></video><div><span class="eyebrow">Pieza promocional</span><h3>Día Internacional del Libro</h3><p>Un homenaje a las historias, con su audio original.</p></div></article>
-<article><video class="video-frame" controls playsinline preload="none" poster="experiencia-audiovisual-poster.jpg" aria-label="Pieza audiovisual promocional de NURAGHE con audio"><source src="sonidos-en-pitidos.mp4" type="video/mp4"></video><div><span class="eyebrow">Pieza promocional</span><h3>Una experiencia audiovisual</h3><p>Una pieza breve del universo de <em>NURAGHE</em>, con su sonido original.</p></div></article>
 </div></section>
 <section class="section sardinia" id="cerdena"><div class="container">
 <div class="section-title"><div><span class="eyebrow">La historia detrás de la historia</span><h2>El lugar donde<br>empezó todo.</h2></div><p class="intro">El autor y las piedras de Cerdeña.<br>Fotografías de su archivo personal.</p></div>
@@ -207,7 +202,6 @@ h2{font-size:clamp(2.4rem,4.2vw,4.2rem);line-height:1.13}
 <div><span class="eyebrow">Dónde conseguir NURAGHE</span><h2>Una historia, dos formas de encontrarla.</h2><p>La novela está disponible en Amazon y también puede adquirirse directamente en la Librería Víctor Jara de Salamanca.</p>
 <div class="buy-options"><div class="buy-option"><h3>Amazon</h3><p>Accede directamente a la ficha de la novela en Amazon.</p><a class="link" href="https://www.amazon.es/NURAGHE-origen-una-nueva-humanidad/dp/B0GYV6PH4R/ref=sr_1_1?dib=eyJ2IjoiMSJ9.Y0zuDUzZ6TWL5cikYZoEGA.VBKnEKOl9cZMmqviHAKHJTszzIVqNCQFh3CUDy6zLe4&amp;dib_tag=se&amp;keywords=9798259006522&amp;qid=1794955618&amp;sr=8-1&amp;th=1" target="_blank" rel="noopener noreferrer">Buscar NURAGHE ↗</a></div>
 <div class="buy-option"><h3>Librería Víctor Jara</h3><p>Compra el libro directamente en Salamanca.</p><a class="link" href="https://www.libreriavictorjara.com/autor/71344-fernando-santos-beneit" target="_blank" rel="noopener noreferrer" aria-label="Ver los libros de Fernando Santos Beneit en la Librería Víctor Jara de Salamanca">Librería física · Salamanca ↗</a></div></div></div>
-<div><video class="bookstore-video" controls playsinline preload="metadata" poster="libreria-victor-jara-poster.jpg" aria-label="Vídeo promocional de la Librería Víctor Jara con sonido original"><source src="libreria-victor-jara.mp4" type="video/mp4"></video><p class="bookstore-note">Conoce la Librería Víctor Jara · Vídeo promocional con sonido.</p></div>
 </div></section>
 <section class="final" id="final"><div class="container">
 <span class="eyebrow">NURAGHE · El origen de una nueva humanidad</span><h2>¿Merece la humanidad<br>una segunda oportunidad?</h2><p>La respuesta empieza al abrir el libro.</p>
@@ -223,7 +217,7 @@ h2{font-size:clamp(2.4rem,4.2vw,4.2rem);line-height:1.13}
 const modal=document.querySelector('.lightbox'),large=modal.querySelector('img'),caption=modal.querySelector('p');let previous=null;document.querySelectorAll('.photo-open').forEach(button=>button.addEventListener('click',()=>{previous=button;large.src=button.dataset.image;large.alt=button.dataset.caption;caption.textContent=button.dataset.caption;modal.classList.add('open');document.body.style.overflow='hidden';modal.querySelector('button').focus()}));function close(){modal.classList.remove('open');large.removeAttribute('src');document.body.style.overflow='';previous?.focus()}modal.querySelector('button').addEventListener('click',close);modal.addEventListener('click',event=>{if(event.target===modal)close()});document.addEventListener('keydown',event=>{if(event.key==='Escape'&&modal.classList.contains('open'))close()});
 const site='https://fersanben3.github.io/nuraghe-web/';document.querySelector('#copy-site').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(site);document.querySelector('#copy-site').textContent='¡Enlace copiado!'}catch{window.prompt('Copia este enlace:',site)}});document.querySelector('#share-site').addEventListener('click',async()=>{if(navigator.share){try{await navigator.share({title:'NURAGHE',url:site})}catch{}}else{try{await navigator.clipboard.writeText(site);document.querySelector('#share-site').textContent='¡Enlace copiado!'}catch{window.prompt('Copia este enlace:',site)}}}});
 document.querySelectorAll('video').forEach(video=>video.addEventListener('play',()=>document.querySelectorAll('video').forEach(other=>{if(other!==video&&!other.paused)other.pause()})));
-const bookstore=document.querySelector('.bookstore-video');bookstore.addEventListener('error',()=>{bookstore.style.display='none';document.querySelector('.bookstore-note').textContent='Vídeo promocional de la Librería Víctor Jara pendiente de incorporar.'},true);
+
 })();
 </script>
 </body></html>
