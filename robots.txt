@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://fersanben3.github.io/nuraghe-web/sitemap.xml
+Sitemap: https://www.nuraghe.es/sitemap.xml
