@@ -151,6 +151,20 @@ h2{font-size:clamp(2.4rem,4.2vw,4.2rem);line-height:1.13}
   .mobile-nav a:hover,.mobile-nav a:focus-visible{background:#174344;color:var(--gold)}
   .mobile-nav .nav-buy{color:var(--gold);border-top:1px solid #dfc38c55;margin-top:4px}
 }
+
+/* Paleta uniforme: dos verdes alternos en todas las secciones, escritorio y móvil.
+   Los colores claros quedan reservados para textos, botones y detalles. */
+:root{--fondo-verde-1:#082b2d;--fondo-verde-2:#10383a}
+body{background:var(--fondo-verde-1);color:var(--white)}
+main>section:nth-of-type(odd){background:var(--fondo-verde-1);color:var(--white)}
+main>section:nth-of-type(even){background:var(--fondo-verde-2);color:var(--white)}
+/* Recuperar contraste de textos y enlaces en las antiguas secciones claras. */
+.author,.nature-videos{color:var(--white)}
+.author .eyebrow,.nature-videos .eyebrow{color:var(--gold)}
+.author .intro,.nature-videos .intro,.nature-videos .section-title .intro{color:var(--muted)}
+.author a:not(.btn),.nature-videos a:not(.btn){color:var(--gold)}
+.author .science-book{border-top-color:#ffffff40;border-bottom-color:#ffffff40}
+.site-footer{background:var(--fondo-verde-2)}
 </style>
 </head>
 
