@@ -136,6 +136,21 @@ h2{font-size:clamp(2.4rem,4.2vw,4.2rem);line-height:1.13}
 .photo-grid figcaption{margin-top:12px;line-height:1.5}
 @media(max-width:680px){.photo-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 12px}.photo-grid figcaption{font-size:.65rem}}
 
+
+/* Menú móvil nativo: funciona al tocar incluso si JavaScript no se ejecuta. */
+.mobile-menu{display:none}
+@media(max-width:680px){
+  .mobile-menu{display:block;position:relative;flex-shrink:0;z-index:70}
+  .mobile-menu summary{display:block;list-style:none;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;border:1px solid var(--gold);color:var(--white);padding:8px 12px;font-size:.9rem;line-height:1.6;user-select:none}
+  .mobile-menu summary::-webkit-details-marker{display:none}
+  .mobile-menu summary::marker{content:""}
+  .mobile-menu summary:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+  .mobile-menu[open] summary{background:#174344}
+  .mobile-menu .mobile-nav{position:absolute;top:calc(100% + 10px);right:0;width:min(330px,calc(100vw - 36px));padding:10px 0;background:#082b2d;border:1px solid #dfc38c80;box-shadow:0 18px 32px #001b1dcc;z-index:100;display:flex;flex-direction:column;gap:0}
+  .mobile-nav a{display:block;padding:12px 18px;font-size:.9rem;color:var(--white);text-decoration:none}
+  .mobile-nav a:hover,.mobile-nav a:focus-visible{background:#174344;color:var(--gold)}
+  .mobile-nav .nav-buy{color:var(--gold);border-top:1px solid #dfc38c55;margin-top:4px}
+}
 </style>
 </head>
 
@@ -143,7 +158,18 @@ h2{font-size:clamp(2.4rem,4.2vw,4.2rem);line-height:1.13}
 <a class="skip" href="#contenido">Saltar al contenido</a>
 <header class="site-header"><div class="container header-row">
 <a class="logo" href="#inicio">NURAGHE<small>Una novela de Fernando Santos Beneit</small></a>
-<button class="menu-toggle" aria-expanded="false" aria-label="Abrir menú">☰ Menú</button>
+<details class="mobile-menu">
+<summary aria-label="Abrir o cerrar menú">☰ Menú</summary>
+<nav class="mobile-nav" aria-label="Navegación móvil">
+<a href="#historia">La historia</a>
+<a href="#trailer">Tráiler</a>
+<a href="#prologo">Primeras líneas</a>
+<a href="#cerdena">Cerdeña</a>
+<a href="#prensa">Entrevistas</a>
+<a href="#autor">El autor</a>
+<a class="nav-buy" href="#comprar">Dónde comprar</a>
+</nav>
+</details>
 <nav class="nav" aria-label="Navegación principal"><a href="#historia">La historia</a><a href="#trailer">Tráiler</a><a href="#prologo">Primeras líneas</a><a href="#cerdena">Cerdeña</a><a href="#prensa">Entrevistas</a><a href="#autor">El autor</a><a class="nav-buy" href="#comprar">Dónde comprar</a></nav>
 </div></header>
 <main id="contenido">
@@ -221,7 +247,7 @@ h2{font-size:clamp(2.4rem,4.2vw,4.2rem);line-height:1.13}
 <footer class="site-footer"><div class="container footer-grid"><strong>NURAGHE</strong><span>Fernando Santos Beneit · Novela y materiales promocionales del autor.</span><span>© 2026 Fernando Santos Beneit</span></div></footer>
 <div class="lightbox" role="dialog" aria-modal="true" aria-label="Fotografía ampliada" tabindex="-1"><button type="button" aria-label="Cerrar fotografía">×</button><img alt=""><p></p></div>
 <script>
-(()=>{const toggle=document.querySelector('.menu-toggle'),nav=document.querySelector('.nav');toggle.addEventListener('click',()=>{const open=nav.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open))});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');toggle.setAttribute('aria-expanded','false')}));
+(()=>{const mobileMenu=document.querySelector('.mobile-menu');mobileMenu?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mobileMenu.removeAttribute('open')));
 const modal=document.querySelector('.lightbox'),large=modal.querySelector('img'),caption=modal.querySelector('p');let previous=null;document.querySelectorAll('.photo-open').forEach(button=>button.addEventListener('click',()=>{previous=button;large.src=button.dataset.image;large.alt=button.dataset.caption;caption.textContent=button.dataset.caption;modal.classList.add('open');document.body.style.overflow='hidden';modal.querySelector('button').focus()}));function close(){modal.classList.remove('open');large.removeAttribute('src');document.body.style.overflow='';previous?.focus()}modal.querySelector('button').addEventListener('click',close);modal.addEventListener('click',event=>{if(event.target===modal)close()});document.addEventListener('keydown',event=>{if(event.key==='Escape'&&modal.classList.contains('open'))close()});
 const site='https://www.nuraghe.es/';document.querySelector('#copy-site').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(site);document.querySelector('#copy-site').textContent='¡Enlace copiado!'}catch{window.prompt('Copia este enlace:',site)}});document.querySelector('#share-site').addEventListener('click',async()=>{if(navigator.share){try{await navigator.share({title:'NURAGHE',url:site})}catch{}}else{try{await navigator.clipboard.writeText(site);document.querySelector('#share-site').textContent='¡Enlace copiado!'}catch{window.prompt('Copia este enlace:',site)}}}});
 document.querySelectorAll('video').forEach(video=>video.addEventListener('play',()=>document.querySelectorAll('video').forEach(other=>{if(other!==video&&!other.paused)other.pause()})));
