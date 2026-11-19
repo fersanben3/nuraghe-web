@@ -165,6 +165,27 @@ main>section:nth-of-type(even){background:var(--fondo-verde-2);color:var(--white
 .author a:not(.btn),.nature-videos a:not(.btn){color:var(--gold)}
 .author .science-book{border-top-color:#ffffff40;border-bottom-color:#ffffff40}
 .site-footer{background:var(--fondo-verde-2)}
+
+/* Presentación en Palencia: décima sección mantiene la alternancia verde. */
+.event-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.85fr);gap:clamp(28px,5vw,75px);align-items:center}
+.event-copy h2{font-size:clamp(2.1rem,4vw,3.7rem);line-height:1.12;margin:20px 0 24px;max-width:640px}
+.event-intro{color:var(--muted);font-size:.98rem;line-height:1.85;max-width:570px}
+.event-details{margin:32px 0 0;padding:0;display:grid;gap:0;max-width:550px}
+.event-details>div{display:grid;grid-template-columns:95px minmax(0,1fr);gap:16px;padding:15px 0;border-top:1px solid #ffffff38}
+.event-details>div:last-child{border-bottom:1px solid #ffffff38}
+.event-details dt{font-size:.75rem;text-transform:uppercase;letter-spacing:.11em;color:var(--gold)}
+.event-details dd{margin:0;font-size:.97rem;line-height:1.5;color:var(--white)}
+.event-poster{margin:0;text-align:center;min-width:0}
+.event-poster a{display:block;max-width:410px;margin:0 auto;text-decoration:none;color:var(--gold)}
+.event-poster img{display:block;width:100%;height:auto;box-shadow:0 18px 40px #0008;border:1px solid #e0c59050}
+.event-poster figcaption{font-size:.72rem;color:var(--muted);margin-top:14px}
+.event-poster-pending{display:block;min-height:360px;padding:150px 18px 20px;border:1px solid #e0c59065;background:#061f21;color:var(--gold);font:normal 1.25rem Georgia,serif}
+.event-poster-pending[hidden]{display:none}
+@media(max-width:980px){.nav{display:none}.mobile-menu{display:block;position:relative;flex-shrink:0;z-index:70}}
+@media(min-width:981px){.nav{gap:18px}.nav a{font-size:.74rem}}
+@media(max-width:680px){.event-grid{grid-template-columns:1fr;gap:32px}.event-copy h2{font-size:clamp(2rem,10vw,3rem)}.event-details>div{grid-template-columns:80px minmax(0,1fr);gap:12px}.event-poster a{max-width:350px}}
+/* Tras la nueva sección, el cierre pasa al verde alterno y el pie recupera el oscuro. */
+.site-footer{background:var(--fondo-verde-1)}
 </style>
 </head>
 
@@ -181,10 +202,11 @@ main>section:nth-of-type(even){background:var(--fondo-verde-2);color:var(--white
 <a href="#cerdena">Cerdeña</a>
 <a href="#prensa">Entrevistas</a>
 <a href="#autor">El autor</a>
+<a href="#presentacion-palencia">Presentación en Palencia</a>
 <a class="nav-buy" href="#comprar">Dónde comprar</a>
 </nav>
 </details>
-<nav class="nav" aria-label="Navegación principal"><a href="#historia">La historia</a><a href="#trailer">Tráiler</a><a href="#prologo">Primeras líneas</a><a href="#cerdena">Cerdeña</a><a href="#prensa">Entrevistas</a><a href="#autor">El autor</a><a class="nav-buy" href="#comprar">Dónde comprar</a></nav>
+<nav class="nav" aria-label="Navegación principal"><a href="#historia">La historia</a><a href="#trailer">Tráiler</a><a href="#prologo">Primeras líneas</a><a href="#cerdena">Cerdeña</a><a href="#prensa">Entrevistas</a><a href="#autor">El autor</a><a href="#presentacion-palencia">Palencia</a><a class="nav-buy" href="#comprar">Dónde comprar</a></nav>
 </div></header>
 <main id="contenido">
 <section class="hero" id="inicio"><div class="container hero-grid">
@@ -250,6 +272,26 @@ main>section:nth-of-type(even){background:var(--fondo-verde-2);color:var(--white
 <div><span class="eyebrow">Dónde conseguir NURAGHE</span><h2>Una historia, dos formas de encontrarla.</h2><p>La novela está disponible en Amazon y también puede adquirirse directamente en la Librería Víctor Jara de Salamanca.</p>
 <div class="buy-options"><div class="buy-option"><h3>Amazon</h3><p>Accede directamente a la ficha de la novela en Amazon.</p><a class="link" href="https://www.amazon.es/NURAGHE-origen-una-nueva-humanidad/dp/B0GYV6PH4R/ref=sr_1_1?dib=eyJ2IjoiMSJ9.Y0zuDUzZ6TWL5cikYZoEGA.VBKnEKOl9cZMmqviHAKHJTszzIVqNCQFh3CUDy6zLe4&amp;dib_tag=se&amp;keywords=9798259006522&amp;qid=1794955618&amp;sr=8-1&amp;th=1" target="_blank" rel="noopener noreferrer">Buscar NURAGHE ↗</a></div>
 <div class="buy-option"><h3>Librería Víctor Jara</h3><p>Compra el libro directamente en Salamanca.</p><a class="link" href="https://www.libreriavictorjara.com/autor/71344-fernando-santos-beneit" target="_blank" rel="noopener noreferrer" aria-label="Ver los libros de Fernando Santos Beneit en la Librería Víctor Jara de Salamanca">Librería física · Salamanca ↗</a></div></div></div>
+</div></section>
+<section class="section event-section" id="presentacion-palencia" aria-labelledby="presentacion-titulo"><div class="container event-grid">
+<div class="event-copy">
+<span class="eyebrow">Próximo encuentro con los lectores</span>
+<h2 id="presentacion-titulo">Presentación oficial de NURAGHE en Palencia</h2>
+<p class="event-intro">Una cita para descubrir la historia, la ciencia y los misterios que se esconden detrás de la novela.</p>
+<dl class="event-details">
+<div><dt>Fecha</dt><dd><time datetime="2026-12-17">Jueves 17 de diciembre de 2026</time></dd></div>
+<div><dt>Hora</dt><dd><time datetime="19:30">19:30 h</time></dd></div>
+<div><dt>Lugar</dt><dd>Biblioteca Pública de Palencia</dd></div>
+<div><dt>Dirección</dt><dd>C/ Eduardo Dato, 4 · Palencia</dd></div>
+</dl>
+</div>
+<figure class="event-poster">
+<a href="cartel-presentacion-palencia.png" target="_blank" rel="noopener noreferrer" aria-label="Ampliar el cartel oficial de la presentación de NURAGHE en Palencia">
+<img src="cartel-presentacion-palencia.png" alt="Cartel oficial de la presentación de NURAGHE en Palencia, con el lema Una novela que te hará reflexionar, el 17 de diciembre a las 19:30 h en la Biblioteca Pública" width="1024" height="1536" loading="lazy" onerror="this.hidden=true;this.nextElementSibling.hidden=false;this.parentElement.removeAttribute('href')">
+<span class="event-poster-pending" hidden>Cartel oficial de la presentación</span>
+</a>
+<figcaption>Cartel oficial · Pulsa sobre la imagen para ampliarla.</figcaption>
+</figure>
 </div></section>
 <section class="final" id="final"><div class="container">
 <span class="eyebrow">NURAGHE · El origen de una nueva humanidad</span><h2>¿Merece la humanidad<br>una segunda oportunidad?</h2><p>La respuesta empieza al abrir el libro.</p>
