@@ -1,0 +1,105 @@
+name: Preparar ZIP de la web actual de NURAGHE
+on:
+  push:
+    branches: [respaldo-web-2026-11-19]
+    paths:
+      - '.github/workflows/respaldo-web.yml'
+permissions:
+  contents: write
+jobs:
+  copia-limpia:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Obtener la versión exacta
+        uses: actions/checkout@v4
+      - name: Empaquetar únicamente archivos en uso
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re, zipfile, hashlib, os
+          root=Path(".")
+          html=(root/"index.html").read_text(encoding="utf-8")
+          filenames=[
+              "NURAGHE_portada_nueva_web.webp",
+              "cartel-presentacion-palencia.png",
+              "cerdena-dsc02343.webp",
+              "cerdena-dsc02355.webp",
+              "cerdena-dsc02371.webp",
+              "cerdena-img_0464.webp",
+              "fernando-santos-beneit.webp",
+              "naturaleza-1.jpg", "naturaleza-1.mp4",
+              "naturaleza-2.jpg", "naturaleza-2.mp4",
+              "naturaleza-3.jpg", "naturaleza-3.mp4",
+              "nuraghe-portada-3d-aprobada.webp",
+              "stintino-cerdena.webp",
+              "trailer-definitivo.mp4",
+              "trailer-poster.jpg",
+          ]
+          core=["index.html","404.html","robots.txt","sitemap.xml","googleb0f28446ef8b8641.html"]
+          for filename in filenames:
+              if filename not in html:
+                  raise RuntimeError(f"El archivo esperado no aparece en index.html: {filename}")
+          files=core+filenames
+          for name in files:
+              if not (root/name).is_file():
+                  raise FileNotFoundError(name)
+          name="NURAGHE_WEB_ACTUAL_2026-11-19.zip"
+          readme="""RESPALDO COMPLETO DE LA WEB NURAGHE (19 de noviembre de 2026)
+          Web de origen: https://www.nuraghe.es/
+          Repositorio original: https://github.com/fersanben3/nuraghe-web
+          Rama de respaldo: respaldo-web-2026-11-19
+
+          Este ZIP incluye únicamente los archivos necesarios para reconstruir
+          la versión actual: index.html (HTML, CSS y JavaScript), recursos
+          gráficos, carteles, los cuatro vídeos en uso, miniaturas, páginas
+          auxiliares y ficheros de indexación/verificación.
+
+          INSTRUCCIONES PARA RECUPERAR LA WEB
+          1. Extraer todo el ZIP en una carpeta. Mantener todos los nombres.
+          2. Crear un repositorio nuevo en GitHub (o utilizar uno existente).
+          3. Subir todos los archivos extraídos a la raíz de la rama main.
+          4. Activar GitHub Pages: Settings > Pages > Deploy from a branch,
+             main y /(root), o configurar el workflow de Pages.
+          5. Si se quiere recuperar www.nuraghe.es, configurar el dominio
+             personalizado en Pages y sus registros DNS. El ZIP no incluye
+             la configuración DNS ni las credenciales de GitHub.
+          6. Confirmar que imágenes y vídeos cargan correctamente y que
+             los enlaces externos siguen funcionando.
+          7. Si cambia el dominio, actualizar las referencias canónicas y
+             enlaces del sitio en index.html, robots.txt y sitemap.xml.
+
+          Se incluye MANIFIESTO_SHA256.txt para comprobar la integridad.
+          Los archivos antiguos o no usados NO están incluidos.
+          """
+          readme="\n".join(line.lstrip() for line in readme.splitlines()).strip()+"\n"
+          manifest=["ARCHIVOS DE LA COPIA DE SEGURIDAD DE NURAGHE","Fecha: 2026-11-19",""]
+          for fn in files:
+              b=(root/fn).read_bytes()
+              manifest.append(f"{hashlib.sha256(b).hexdigest()}  {fn}  ({len(b)} bytes)")
+          with zipfile.ZipFile(name,"w",compression=zipfile.ZIP_DEFLATED,compresslevel=6) as z:
+              for fn in files:
+                  z.write(fn,arcname=fn)
+              z.writestr("LEEME_RESTAURACION.txt",readme)
+              z.writestr("MANIFIESTO_SHA256.txt","\n".join(manifest)+"\n")
+          with zipfile.ZipFile(name) as z:
+              bad=z.testzip()
+              assert bad is None, f"ZIP corrupto: {bad}"
+              assert len(z.namelist())==len(files)+2
+          print("ZIP creado:",name,os.path.getsize(name),"bytes; archivos:",len(files)+2)
+          PY
+      - name: Guardar copia como artefacto descargable
+        uses: actions/upload-artifact@v4
+        with:
+          name: NURAGHE_WEB_ACTUAL_2026-11-19
+          path: NURAGHE_WEB_ACTUAL_2026-11-19.zip
+          retention-days: 90
+          compression-level: 0
+      - name: Guardar ZIP en la rama de respaldo sin tocar la web pública
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add NURAGHE_WEB_ACTUAL_2026-11-19.zip
+          git commit -m "Copia de seguridad limpia de la web NURAGHE del 19-11-2026"
+          git push origin HEAD:respaldo-web-2026-11-19
