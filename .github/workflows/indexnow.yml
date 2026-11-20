@@ -1,0 +1,66 @@
+name: Avisar a buscadores de novedades de NURAGHE
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'presentacion-palencia.html'
+      - 'prensa.html'
+      - 'sitemap.xml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  indexnow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Leer archivos modificados
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Notificar solo páginas nuevas o modificadas
+        env:
+          INDEXNOW_KEY: 64ab8d4b1722c44c6fef4b8803386d59
+        run: |
+          python3 - <<'PY'
+          import json, os, subprocess, time, urllib.request, urllib.error
+          host="www.nuraghe.es"
+          base="https://"+host
+          pages={"index.html":base+"/","presentacion-palencia.html":base+"/presentacion-palencia.html","prensa.html":base+"/prensa.html"}
+          try:
+              changed=set(subprocess.check_output(["git","diff","--name-only","HEAD^","HEAD"],text=True).splitlines())
+          except subprocess.CalledProcessError:
+              changed=set(pages)
+          urls=[url for path,url in pages.items() if path in changed]
+          if "sitemap.xml" in changed and not urls:
+              urls=list(pages.values())
+          if not urls:
+              print("No hay páginas que notificar")
+              raise SystemExit(0)
+          key=os.environ["INDEXNOW_KEY"]
+          key_url=f"{base}/{key}.txt"
+          # Evitar avisar antes de que GitHub Pages publique la clave y las páginas.
+          for attempt in range(12):
+              try:
+                  with urllib.request.urlopen(key_url,timeout=15) as resp:
+                      actual=resp.read().decode("utf-8").strip()
+                  if actual==key:
+                      break
+              except Exception as e:
+                  print("Esperando publicación del sitio:",str(e))
+              time.sleep(30)
+          else:
+              raise SystemExit("La clave de IndexNow aún no está publicada; no se envía ninguna URL")
+          payload=json.dumps({"host":host,"key":key,"urlList":urls}).encode("utf-8")
+          request=urllib.request.Request("https://api.indexnow.org/indexnow",data=payload,headers={"Content-Type":"application/json; charset=utf-8","User-Agent":"NURAGHE-GitHubPages/1.0"},method="POST")
+          try:
+              with urllib.request.urlopen(request,timeout=40) as resp:
+                  code=resp.status
+                  print("IndexNow respondió",code,"para",urls)
+          except urllib.error.HTTPError as e:
+              print("IndexNow devolvió HTTP",e.code,e.read().decode("utf-8","replace")[:500])
+              raise
+          if code not in (200,202):
+              raise SystemExit(f"Respuesta inesperada: {code}")
+          print("Notificación recibida por IndexNow. Esto no garantiza indexación ni posicionamiento.")
+          PY
